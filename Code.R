@@ -1,3 +1,6 @@
+# Packages
+library(tidyverse)
+
 # Importing
 data <- read_excel("~/Downloads/qamoData.xlsx")
 
@@ -15,7 +18,7 @@ data$SlNo <- NULL
 data$Experience_Yrs <- NULL
 data$`Gender-B` <- NULL
 earners <- subset(data, Salary >= 200000)
-earners$scoreMean <- (earners$Percent_SSC + earners$Percent_HSC + earners$Percent_Degree + earners$Percent_MBA)/2
+earners$scoreMean <- (earners$Percent_SSC + earners$Percent_HSC + earners$Percent_Degree + earners$Percent_MBA)/4
 
 male <- subset(earners, Gender == "M")
 female <- subset(earners, Gender == "F")
