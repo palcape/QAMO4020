@@ -9,6 +9,7 @@ ggplot(data1, aes(x = Experts, y = Units.Sold)) + geom_point()
 ggsave("graph2.pdf")
 ggplot(data1, aes(x = Staff, y = Units.Sold)) + geom_point()
 ggsave("graph3.pdf")
+ggplot(data1, aes(x = Month, y = Units.Sold)) + geom_point()
 
 # Analysis
 LogPop <- log(data1$City.Pop)
@@ -42,8 +43,17 @@ Logan <- subset(data1, City == "Logan")
   LogLogExperts <- log(Logan$Experts)
   LogLogStaff <- log(Logan$Staff)
   LogLogUnits <- log(Logan$Units.Sold)
-reg4 <- lm(LogLogUnits ~ factor(Year) + factor(Month) + LogLogPop + LogLogExperts + LogLogStaff, data = GJ)
+reg4 <- lm(LogLogUnits ~ factor(Year) + factor(Month) + LogLogPop + LogLogExperts + LogLogStaff, data = Logan)
 summary(reg4)
 (4500/1160)*(-0.144482/0.224057)
+mean(Logan$Units.Sold)
+mean(Logan$Experts)
 
+reg5 <- lm(Units.Sold ~ factor(City) + factor(Year) + factor(Month) + City.Pop + Experts + Staff, data = data1)
+summary(reg5)
 
+reg6 <- lm(Units.Sold ~ factor(Year) + factor(Month) + City.Pop + Experts + Staff, data = Logan)
+summary(reg6)
+
+reg7 <- lm(Units.Sold ~ City.Pop + Experts + Staff, data = data1)
+summary(reg7)
